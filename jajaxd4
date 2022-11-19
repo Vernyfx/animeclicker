@@ -1,0 +1,302 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Anime Clicker Fight [🐉Dragon]", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+Tab:AddToggle({
+	Name = "Auto Click",
+	Default = false,
+	Callback = function(ACV)
+		_G.autoclick = ACV;
+	end    
+})
+
+task.spawn(function()
+    while wait() do
+        if _G.autoclick then
+            game:GetService("ReplicatedStorage").System.SystemClick.Click:FireServer()
+            wait()
+        end
+    end
+end)
+
+Tab:AddButton({
+	Name = "Enable Auto Farm",
+	Callback = function()
+		game:GetService("ReplicatedStorage").ServerMsg.Setting:InvokeServer("isAutoOn",1)
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Disable Auto Farm",
+	Callback = function()
+		game:GetService("ReplicatedStorage").ServerMsg.Setting:InvokeServer("isAutoOn",0)
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Eggs",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddDropdown({
+	Name = "Select Egg Number",
+	Default = "1",
+	Options = {1, 2, 3, 4, 5, 6, 7, 8},
+	Callback = function(SEG)
+		_G.selegg = SEG;
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Auto Buy Selected Egg 1X",
+	Default = false,
+	Callback = function(ABSE)
+		_G.abse = ABSE;
+	end    
+})
+
+task.spawn(function()
+    while wait() do
+        if _G.abse then
+            if _G.selegg ~= nil then
+                game:GetService("ReplicatedStorage").Tool.DrawUp.Msg.DrawHero:InvokeServer(_G.selegg,1)
+            end
+        end
+    end
+end)
+
+Tab:AddToggle({
+	Name = "Auto Buy Selected Egg 3X",
+	Default = false,
+	Callback = function(ABSE3)
+		_G.abse = ABSE3;
+	end    
+})
+
+task.spawn(function()
+    while wait() do
+        if _G.abse3 then
+            if _G.selegg ~= nil then
+                game:GetService("ReplicatedStorage").Tool.DrawUp.Msg.DrawHero:InvokeServer(_G.selegg,3)
+            end
+        end
+    end
+end)
+
+Tab:AddSlider({
+	Name = "Equip Best Pet Time",
+	Min = 1,
+	Max = 120,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Second",
+	Callback = function(PW)
+		_G.petwait = PW;
+	end    
+})
+
+Tab:AddToggle({
+	Name = "This is a toggle!",
+	Default = false,
+	Callback = function(AEBP)
+		_G.autobest= AEBP;
+	end    
+})
+
+task.spawn(function()
+	while wait() do
+		if _G.autobest then
+			game:GetService("ReplicatedStorage").ServerMsg.WearBestPet:InvokeServer()
+			wait(_G.petwait)
+		end
+	end
+end)
+
+
+
+
+
+
+local Tab = Window:MakeTab({
+	Name = "Walk Speed",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+
+Tab:AddSlider({
+	Name = "Change Walk Speed",
+	Min = 50,
+	Max = 500,
+	Default = 50,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 10,
+	ValueName = "Speed",
+	Callback = function(WS)
+		_G.ws = WS;
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Toggle WalkSpeed",
+	Default = false,
+	Callback = function(WS1)
+		_G.wstog = WS1;
+	end    
+})
+
+task.spawn(function()
+	while wait() do
+		if _G.wstog then
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.ws
+			wait()
+		end
+	end
+end)
+
+local Tab = Window:MakeTab({
+	Name = "Boosts",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddToggle({
+	Name = "Auto Use 1.25x Gold",
+	Default = false,
+	Callback = function(BU1)
+		_G.bu1 = BU1;
+	end    
+})
+
+task.spawn(function()
+	while wait() do
+		if _G.bu1 then
+			game:GetService("ReplicatedStorage").ServerMsg.UseItemByItemID:InvokeServer(101)
+			wait(1)
+		end
+	end
+end)
+
+Tab:AddToggle({
+	Name = "Auto Use 1.5x Gold",
+	Default = false,
+	Callback = function(BU2)
+		_G.bu2 = BU2;
+	end    
+})
+
+task.spawn(function()
+	while wait() do
+		if _G.bu2 then
+			game:GetService("ReplicatedStorage").ServerMsg.UseItemByItemID:InvokeServer(102)
+			wait(1)
+		end
+	end
+end)
+
+
+Tab:AddToggle({
+	Name = "Auto Use 1.25x Attack",
+	Default = false,
+	Callback = function(BU3)
+		_G.bu3 = BU3;
+	end    
+})
+
+task.spawn(function()
+	while wait() do
+		if _G.bu3 then
+			game:GetService("ReplicatedStorage").ServerMsg.UseItemByItemID:InvokeServer(103)
+			wait(1)
+		end
+	end
+end)
+
+
+
+Tab:AddToggle({
+	Name = "Auto Use 1.5x Attack",
+	Default = false,
+	Callback = function(BU4)
+		_G.bu4 = BU4;
+	end    
+})
+
+task.spawn(function()
+	while wait() do
+		if _G.bu4 then
+			game:GetService("ReplicatedStorage").ServerMsg.UseItemByItemID:InvokeServer(104)
+			wait(1)
+		end
+	end
+end)
+
+local Tab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+Tab:AddToggle({
+	Name = "Auto Claim Free Spin",
+	Default = false,
+	Callback = function(ACFS)
+		_G.autospin = ACFS;
+	end    
+})
+
+task.spawn(function()
+	while wait() do
+		if _G.autospin then
+			game:GetService("ReplicatedStorage").System.SystemDailyLottery.Spin:InvokeServer()
+			wait(5)
+		end
+	end
+end)
+
+Tab:AddButton({
+	Name = "Redeem All Codes",
+	Callback = function()
+		game:GetService("ReplicatedStorage").ServerMsg.Code:InvokeServer("DRAGON")
+		wait(1)
+		game:GetService("ReplicatedStorage").ServerMsg.Code:InvokeServer("5KLIKES")
+		wait(1)
+		game:GetService("ReplicatedStorage").ServerMsg.Code:InvokeServer("UPDATE2")
+		wait(1)
+		game:GetService("ReplicatedStorage").ServerMsg.Code:InvokeServer("ONEPIECE")
+		wait(1)
+		game:GetService("ReplicatedStorage").ServerMsg.Code:InvokeServer("MASK")
+		wait(1)
+		game:GetService("ReplicatedStorage").ServerMsg.Code:InvokeServer("RUSHRUSH")
+		wait(1)
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddParagraph("Credits Below:","!KatagiriYuuchi#7765")
+
+Tab:AddParagraph("Join My Discord Server","https://discord.gg/ZQXAkRpw")
+
+Tab:AddButton({
+	Name = "Copy Discord Link",
+	Callback = function()
+      	setclipboard("https://discord.gg/ZQXAkRpw")
+  	end    
+})
+
