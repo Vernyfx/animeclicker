@@ -105,7 +105,7 @@ Tab:AddSlider({
 })
 
 Tab:AddToggle({
-	Name = "This is a toggle!",
+	Name = "Auto Equip Best Pets",
 	Default = false,
 	Callback = function(AEBP)
 		_G.autobest= AEBP;
